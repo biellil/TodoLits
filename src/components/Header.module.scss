@@ -5,8 +5,64 @@
     justify-content: center;
     align-items: center;
     height: 12.5rem;
+    flex-shrink: 0;
+
     img{
     height:3rem;
 
+    }
+}
+
+.search{
+    left: 14.5rem;
+    top:10.813rem;
+    position: absolute;
+    display: flex;
+    height: 54px;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+
+    input{
+        background-color: var(--gray500);
+        height: 3rem;
+        width: 50rem;
+        padding: 1rem;
+        border: 0;
+        border-radius: 8px;
+        resize: none;
+        line-height: 1.4;
+        color: var(--gray300);
+        outline:transparent ;
+        box-shadow:0 0 0 2px var(--gray700);
+
+       
+    }
+    input:hover{
+        box-shadow:0 0 0 2px var(--prupleDrark);
+        color: var(--gray100);
+    }
+    
+    button{
+        margin-left: 0.5rem;
+        background-color: var(--blueDark);
+        border-radius: 8px;
+        width: 90px;
+        height: 52px;
+        border: 0;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+     display: flex;
+     color: var(--gray100);
+     img{
+        margin-left: 0.5rem;
+     }
+
+    }
+    button:hover{
+        
+        background-color: var(--blue);
     }
 }

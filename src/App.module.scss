@@ -1,0 +1,53 @@
+
+.main{
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: stretch;
+    padding: 3.5rem;
+
+ 
+
+    div{
+        font-size: 14px;
+        color: var(--blue);
+        samp{
+            padding: 0.3rem;
+            background-color: var( --gray400);
+            color: var( --gray200);
+          
+            border-radius: 999px;
+        }
+
+        + div{
+          
+            margin-left: 10rem;
+            color: var(--pruple);
+        }
+    }
+  
+} 
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+color: var(--gray300);
+padding: 4rem 1.5rem;
+gap: 1rem;
+
+
+border-radius: 8px;
+border-top: 1px solid var(--grey400, #333);
+img{
+    margin-bottom: 1rem;
+}
+
+samp{
+    
+    color: var(--gray400);
+}
+}
+
