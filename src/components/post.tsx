@@ -1,37 +1,52 @@
-// Post.tsx
-import React, { useState } from "react";
+// post.tsx
+import { useState } from "react";
 
 import styles from './Post.module.scss';
 import { Trash } from "phosphor-react";
 
 interface PostProps {
   tasks: string[];
+  key: string;
+  onDeletComment: (task: string) => void; 
+  onCheckboxChange: (isCheckedList: boolean[]) => void;
+  
 }
 
-export function Post({ tasks }: PostProps) {
+export function Post({ tasks, onDeletComment , onCheckboxChange }: PostProps) {
 
-    const [isChecked, setIsChecked] = useState(false); 
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
-    };
- 
+  const [isCheckedList, setIsCheckedList] = useState<boolean[]>(Array(tasks.length).fill(false));
+
+  const handleCheckboxChange = (key: number) => {
+    const newIsCheckedList = [...isCheckedList];
+    newIsCheckedList[key] = !newIsCheckedList[key];
+    setIsCheckedList(newIsCheckedList);
+    onCheckboxChange(newIsCheckedList); // Call the prop function with the updated isCheckedList
+  };
+
+  const handLeDeLeteComment = (taskToDelete: string) => {
+    onDeletComment(taskToDelete);
+  };
+
 
   return (
     <div>
       {tasks.map((task, key) => (
         <div key={key} className={styles.content}>
           <header>
-
-             <label  className={styles.container}>
-                 <input key={key} type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+            <label className={styles.container}>
+              <input
+                type="checkbox"
+                checked={isCheckedList[key]}
+                onChange={() => handleCheckboxChange(key)}
+              />
               <span className={styles.checkmark}></span>
-             </label>
-
-
+            </label>
           </header>
-          <strong>{task}</strong>
-          <button title="delete" /*</div>onClick={}*/>
+          <strong style={{ textDecoration: isCheckedList[key] ? 'line-through' : 'none' }}>
+            {task}
+          </strong>
+          <button title="delete" onClick={() => handLeDeLeteComment(task)}>
             <Trash size={24} />
           </button>
         </div>

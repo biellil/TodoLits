@@ -8,42 +8,68 @@ import { Post } from './components/post';
 export function App() {
   const [searchValue, setSearchValue] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
+  const [isCheckedList, setIsCheckedList] = useState<boolean[]>([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
+  const handleCheckboxChange = (updatedIsCheckedList: boolean[]) => {
+    setIsCheckedList(updatedIsCheckedList);
+  };
+
   const handleCreateTask = () => {
     if (searchValue.trim() !== '') {
       setTasks((prevTasks) => [...prevTasks, searchValue]);
+      setIsCheckedList((prevIsCheckedList) => [...prevIsCheckedList, false]);
       setSearchValue('');
     }
   };
+  
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleCreateTask();
+    }
+  };
+
+
+  
+
+  function deletComment(commentToDelete: string) {
+    const tasksWithoutDeletedOne = tasks.filter((task: string) => {
+      return task !== commentToDelete;
+    });
+    setTasks(tasksWithoutDeletedOne);
+  }
+
+  const totalTasks = tasks.length;
+  const completedTasks = isCheckedList.filter((isChecked) => isChecked).length;
 
   return (
     <main>
       <div className={styles.search}>
-        <input
+      <input
           placeholder='Adicione uma nova tarefa'
           type='search'
           value={searchValue}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress} // Adiciona o evento onKeyPress
         />
         <button onClick={handleCreateTask}>
-          Criar <img src={plus} alt='' />
+          Criar <img src={plus} alt="Ícone de Adição" />
         </button>
       </div>
 
       <header className={styles.main}>
-        <div> Tarefas criadas <samp>{tasks.length}</samp></div>
-        <div>Concluídas <samp>0</samp></div>
+      <div> Tarefas criadas <samp title='Tarefas criada'> {totalTasks}</samp></div>
+        <div>Concluídos <samp title='Concluídas' > {completedTasks} de {totalTasks}</samp></div>
       </header>
 
       {/* Conditionally render the Post component */}
       {tasks.length > 0 ? (
         <article className={styles.register}>
-         
-          <Post tasks={tasks} />
+          <Post tasks={tasks} key={''} onDeletComment={deletComment} onCheckboxChange={handleCheckboxChange} />
         </article>
       ) : (
         <article className={styles.register}>
@@ -58,3 +84,4 @@ export function App() {
 }
 
 export default App;
+
