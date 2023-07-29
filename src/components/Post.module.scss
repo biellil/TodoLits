@@ -117,4 +117,29 @@ button{
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }
- 
+
+
+  @media(max-width: 426px){
+
+    .content{
+
+      width: 400px;
+    }
+  
+}
+
+@media(max-width: 375px){
+
+  .content{
+
+    width: 360px;
+  }
+
+}
+@media(max-width: 320px){
+
+  .content{
+
+    width: 300px;
+  }
+}

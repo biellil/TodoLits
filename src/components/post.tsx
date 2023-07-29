@@ -6,7 +6,6 @@ import { Trash } from "phosphor-react";
 
 interface PostProps {
   tasks: string[];
-  key: string;
   onDeletComment: (task: string) => void; 
   onCheckboxChange: (isCheckedList: boolean[]) => void;
   
@@ -21,7 +20,7 @@ export function Post({ tasks, onDeletComment , onCheckboxChange }: PostProps) {
     const newIsCheckedList = [...isCheckedList];
     newIsCheckedList[key] = !newIsCheckedList[key];
     setIsCheckedList(newIsCheckedList);
-    onCheckboxChange(newIsCheckedList); // Call the prop function with the updated isCheckedList
+    onCheckboxChange(newIsCheckedList); 
   };
 
   const handLeDeLeteComment = (taskToDelete: string) => {

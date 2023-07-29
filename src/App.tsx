@@ -69,7 +69,7 @@ export function App() {
       {/* Conditionally render the Post component */}
       {tasks.length > 0 ? (
         <article className={styles.register}>
-          <Post tasks={tasks} key={''} onDeletComment={deletComment} onCheckboxChange={handleCheckboxChange} />
+          <Post tasks={tasks} onDeletComment={deletComment} onCheckboxChange={handleCheckboxChange} />
         </article>
       ) : (
         <article className={styles.register}>
