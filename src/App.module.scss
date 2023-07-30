@@ -58,13 +58,16 @@ samp{
 }
 
 .search{
-    left: 14.5rem;
+    left: 20rem;
     top:10.813rem;
     position: absolute;
+     
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 54px;
     padding: 1rem;
-    align-items: center;
+    
     gap: 8px;
     flex: 1 0 0;
 
